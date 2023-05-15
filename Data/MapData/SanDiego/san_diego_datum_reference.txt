@@ -1,0 +1,5 @@
+The LULC shape file was generated from the original USGS GIRAS LULC file by Lakes Environmental Software.
+Datum: NAD83
+Projection: GEOGRAPHIC (Lat/Long)
+Data collection date by U.S.G.S.: 1971
+Reference: http://edcwww.cr.usgs.gov/products/landcover/lulc.html
