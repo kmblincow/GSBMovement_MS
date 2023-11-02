@@ -53,13 +53,15 @@ mean(c(0.296,0.132,0.571,0.184,0,0.001,0.187))
 sd(c(0.296,0.132,0.571,0.184,0,0.001,0.187))
 
 #Detection REsidency Index
-d %>% group_by(Transmitter) %>% 
+LJ %>% group_by(Transmitter) %>% 
   summarize(DAL = max(Date) - min(Date) + 1)
+mean(c(0,864,271,202,1426,1,283))
+sd(c(0,864,271,202,1426,1,283))
 
 #56705
 425/1426
 #56711
-179/623
+179/283
 #27063
 767/864
 #56704
@@ -69,8 +71,8 @@ d %>% group_by(Transmitter) %>%
 #27070
 187/271
 
-mean(c(0.298,0.287,0.888,1,0,1,.69))
-sd(c(0.298,0.287,0.888,1,0,1,.69))
+mean(c(0.298,0.633,0.888,1,0,1,.69))
+sd(c(0.298,0.633,0.888,1,0,1,.69))
 
 #calculate number of stations detected for each fish
 LJ %>% group_by(Transmitter) %>% 
@@ -190,9 +192,9 @@ p3 <- ggplot(WH_dm2, aes(x = DateHour, y = n_det)) +
   geom_point(aes(shape = reg, color = reg)) +
   geom_line(aes(x = DateHour, y = ravg), alpha = 0.7) +
   labs(x = "Time", y = "# of Detections Each Hour", color = "", shape = "") +
-  scale_color_manual(values = c("black",
-                                "gray50",
-                                "gray90")) +
+  scale_color_manual(values = c("#8961b3",
+                                 "#969e4a",
+                                 "gray50")) +
   scale_x_datetime(date_labels = "%b %Y", 
                    breaks = "3 months") +
   scale_y_continuous(limits = c(0, 80)) +

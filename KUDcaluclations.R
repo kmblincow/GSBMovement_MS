@@ -270,24 +270,83 @@ ab <- ggplot() +
            y = 4.75, yend = 5.25, size = 1) +
   annotate("text", x = as.Date("2018-06-15"), y = 5.25, label = "(a)") +
   scale_x_date(date_labels = "%b %Y", 
-               breaks = "6 months") +
+               breaks = "5 months") +
   labs(x = "Time", y = "Tag Number") +
   theme_classic()
 
 p <- (ab)/ (p56705 + p56711 + p27063)/ (p56704 + p27070)
 
+p2  <- (p56705 + p56711)/(p27063 + p56704)/(p27070 + theme(legend.position = "bottom") + ab)
 
 
-png(file="Figures/2022Figs/KUDs.png",
-    width = 5000,
-    height = 3700,
+layout <- "
+ABC
+ADE
+AFG
+"
+
+p3 <- (ab + coord_flip()) + p56705 + p56711 + p27063 + p56704 + (p27070) + 
+  guide_area() +
+  plot_layout(design = layout, guides = "collect")
+
+p3
+
+
+#going with this one...
+layout <- "
+AA
+BC
+DE
+FG
+"
+
+
+
+
+p4 <- (ab + theme(axis.title = element_text(size = 15),
+                  axis.text = element_text(size = 12))) + 
+  (p56705 + theme(axis.title.x = element_blank(),
+                  axis.text = element_text(size = 12),
+                  axis.title.y = element_text(size = 15))) +
+  (p56711 + theme(axis.title = element_blank(),
+                  axis.text = element_text(size = 12))) + 
+  (p27063 + theme(axis.title.x = element_blank(),
+                 axis.text = element_text(size = 12),
+                 axis.title.y = element_text(size = 15))) +
+  (p56704 + theme(axis.title.y = element_blank(),
+                 axis.text = element_text(size = 12),
+                 axis.title.x = element_text(size = 15))) +
+  (p27070 + theme(axis.title = element_text(size = 15),
+               axis.text = element_text(size = 12),
+               legend.key.size = unit(1, "cm"),
+               # legend.key.height = unit(1, "cm"),
+               # legend.key.width = unit(1, "cm"),
+               legend.title = element_text(size=15),
+               legend.text = element_text(size=12))) + 
+  guide_area() +
+  plot_layout(design = layout, guides = "collect",
+              heights = c(1, 2, 2, 2))
+
+p4
+
+
+# png(file="Figures/2022Figs/KUDs_ReviewsTest.png",
+#     width = 3500,
+#     height = 3000,
+#     res = 300)
+# 
+# p3
+# 
+# dev.off()
+
+png(file="Figures/2022Figs/KUDs_ReviewsTest2.png",
+    width = 3200,
+    height = 4000,
     res = 300)
 
-p
+p4
 
 dev.off()
-
-
 
 #KUD sizes
 st_area(HR95_nsp_oashcut)
